@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Values Across Five Asian Countries (Synthetic WVS-style Data)</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1f2328;--mut:#5b636b;--card:#fff;--line:#e3e1da;--accent:#0072B2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:980px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.2;margin:.4em 0 .3em}
+h2{font-size:1.25rem;margin:0 0 .2em}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;margin:18px 0}
+.note{background:#fff7e0;border:1px solid #ecd48a;border-radius:8px;padding:12px 14px}
+.take{margin:.6em 0 0;color:var(--mut)}
+.take b{color:var(--fg)}
+.sub{color:var(--mut);font-size:.9rem;margin:0 0 .6em}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}
+th{font-weight:600;background:#f3f2ec}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tw{overflow-x:auto}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:.8em 0}
+.checks div{border:1px solid var(--line);border-radius:8px;padding:10px;background:#faf9f5}
+.checks .big{font-size:1.4rem;font-weight:700;display:block}
+svg{width:100%;height:auto;display:block;overflow:visible}
+svg text{font-family:inherit;fill:var(--fg)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:.4em 0;font-size:.88rem}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+#tip{position:fixed;pointer-events:none;background:#1f2328;color:#fff;padding:5px 9px;border-radius:6px;font-size:.82rem;opacity:0;transition:opacity .1s;z-index:9;max-width:240px}
+.hm{display:grid;grid-template-columns:auto repeat(10,1fr);gap:2px;font-size:clamp(.6rem,2.2vw,.8rem);max-width:640px;margin:auto}
+.hm div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:2px}
+.hm .h{aspect-ratio:auto;color:var(--mut);padding:2px}
+.hmwrap{max-width:700px;margin:auto}
+.axl{text-align:center;color:var(--mut);font-size:.85rem;margin:.3em 0}
+footer{color:var(--mut);font-size:.85rem}
+a{color:var(--accent)}
+@media (prefers-color-scheme:dark){:root{--bg:#15171a;--fg:#e8e8e8;--mut:#a0a7ae;--card:#1e2125;--line:#33383d}.note{background:#3a3220;border-color:#6b5a28}th{background:#262a2f}.checks div{background:#22262a}svg text{fill:var(--fg)}}
+</style>
+</head>
+<body>
+<main>
+<h1>Values Across Five Asian Countries</h1>
+<p class="note"><b>Synthetic data.</b> This page analyses a <b>simulated</b> dataset, fabricated to resemble the
+<a href="https://www.worldvaluessurvey.org/" target="_blank" rel="noopener">World Values Survey</a>, Wave 7 (the model it is based on).
+No real respondents are included, so every finding is <b>illustrative only</b>, not a real-world result. Countries: <b>Turkey</b> (Middle East),
+<b>India</b> (South Asia), <b>Singapore</b> (Southeast Asia), <b>China</b> (East Asia) and <b>Kazakhstan</b> (Central Asia).<br>
+<small>Model survey citation: Haerpfer, C., Inglehart, R., Moreno, A., Welzel, C., Kizilova, K., Diez-Medrano J., Lagos, M., Norris, P., Ponarin, E. &amp; Puranen, B. (eds.). 2022. <i>World Values Survey: Round Seven – Country-Pooled Datafile Version 6.0.</i> Madrid, Spain &amp; Vienna, Austria: JD Systems Institute &amp; WVSA Secretariat. <a href="https://www.worldvaluessurvey.org/" target="_blank" rel="noopener">worldvaluessurvey.org</a></small></p>
+
+<section id="data">
+<h2>The data</h2>
+<p class="sub">Columns, inferred types and non-empty observations (before cleaning). <code>respondent_id</code> is an identifier only and is excluded from all tables and charts.</p>
+<div class="tw"><table id="schema"><thead><tr><th>Column</th><th>Type</th><th class="num">Non-empty obs.</th></tr></thead><tbody></tbody></table></div>
+<div class="checks" id="checks"></div>
+</section>
+
+<section><h2>Cultural map</h2>
+<p class="sub">Country averages: secular vs emancipative values (Inglehart–Welzel style).</p>
+<div id="c1"></div>
+<p class="take" id="t1"></p></section>
+
+<section><h2>Value fingerprints</h2>
+<p class="sub">Six measures per country, each scaled 0–1.</p>
+<div id="c2"></div><div class="legend" id="l2"></div>
+<p class="take" id="t2"></p></section>
+
+<section><h2>Individual values: China vs India</h2>
+<p class="sub">Random sample of 300 respondents per country (seed 42); large outlined points are country averages.</p>
+<div id="c3"></div><div class="legend" id="l3"></div>
+<p class="take" id="t3"></p></section>
+
+<section><h2>Life vs financial satisfaction: Singapore</h2>
+<p class="sub">Number of respondents in each combination of life satisfaction (rows) and financial satisfaction (columns), 1–10.</p>
+<div class="hmwrap"><div class="axl">Financial satisfaction →</div><div class="hm" id="c4"></div><div class="axl">↑ rows: life satisfaction (10 at top)</div></div>
+<p class="take" id="t4"></p></section>
+
+<footer>Generated by <code>build.py</code> from <code>data/wvs-synthetic.csv</code> (fixed seed 42). Synthetic data; illustrative only.</footer>
+</main>
+<div id="tip"></div>
+<script>
+const D=/*DATA*/null, M=/*META*/null;
+const COL={China:"#E69F00",Singapore:"#D55E00",Turkey:"#CC79A7",India:"#0072B2",Kazakhstan:"#009E73"};
+const MARK={China:"circle",Singapore:"square",Turkey:"triangle",India:"diamond",Kazakhstan:"cross"};
+const DASH={China:"",Singapore:"6 3",Turkey:"2 3",India:"10 3 2 3",Kazakhstan:"4 4"};
+const NS="http://www.w3.org/2000/svg";
+const f2=x=>x.toFixed(2), f1=x=>x.toFixed(1), n0=x=>x.toLocaleString("en-US");
+const tip=document.getElementById("tip");
+function el(p,t,a,txt){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;p&&p.appendChild(e);return e}
+function marker(p,kind,x,y,r,c,o={}){
+  const a=Object.assign({fill:c,stroke:"#fff","stroke-width":.8},o);let e;
+  if(kind==="circle")e=el(p,"circle",{cx:x,cy:y,r,...a});
+  else if(kind==="square")e=el(p,"rect",{x:x-r,y:y-r,width:2*r,height:2*r,...a});
+  else if(kind==="triangle")e=el(p,"polygon",{points:`${x},${y-r*1.15} ${x+r*1.1},${y+r*.9} ${x-r*1.1},${y+r*.9}`,...a});
+  else if(kind==="diamond")e=el(p,"polygon",{points:`${x},${y-r*1.3} ${x+r*1.3},${y} ${x},${y+r*1.3} ${x-r*1.3},${y}`,...a});
+  else e=el(p,"path",{d:`M${x-r} ${y-r}L${x+r} ${y+r}M${x+r} ${y-r}L${x-r} ${y+r}`,fill:"none",stroke:c,"stroke-width":Math.max(2,r*.5),...(o.stroke&&o.stroke!=="#fff"?{stroke:o.stroke}:{})});
+  return e}
+function tipOn(e,txt){e.addEventListener("mousemove",ev=>{tip.textContent=txt;tip.style.opacity=1;tip.style.left=Math.min(ev.clientX+12,innerWidth-250)+"px";tip.style.top=ev.clientY+12+"px"});e.addEventListener("mouseleave",()=>tip.style.opacity=0)}
+function legendItem(c,extra){const s=document.createElement("span");const v=document.createElementNS(NS,"svg");v.setAttribute("width",34);v.setAttribute("height",14);v.setAttribute("viewBox","0 0 34 14");v.style.width="34px";
+  if(extra)el(v,"line",{x1:0,y1:7,x2:34,y2:7,stroke:COL[c],"stroke-width":2,"stroke-dasharray":DASH[c]});
+  marker(v,MARK[c],17,7,4.5,COL[c]);s.appendChild(v);s.appendChild(document.createTextNode(c));return s}
+function axes(g,W,H,m,xr,yr,xl,yl,ticks=5){
+  const sx=v=>m.l+(v-xr[0])/(xr[1]-xr[0])*(W-m.l-m.r), sy=v=>H-m.b-(v-yr[0])/(yr[1]-yr[0])*(H-m.t-m.b);
+  for(let i=0;i<=ticks;i++){const xv=xr[0]+i*(xr[1]-xr[0])/ticks, yv=yr[0]+i*(yr[1]-yr[0])/ticks;
+    el(g,"line",{x1:sx(xv),x2:sx(xv),y1:m.t,y2:H-m.b,stroke:"#8883","stroke-width":1});
+    el(g,"line",{y1:sy(yv),y2:sy(yv),x1:m.l,x2:W-m.r,stroke:"#8883","stroke-width":1});
+    el(g,"text",{x:sx(xv),y:H-m.b+16,"text-anchor":"middle","font-size":12},f2(xv));
+    el(g,"text",{x:m.l-8,y:sy(yv)+4,"text-anchor":"end","font-size":12},f2(yv));}
+  el(g,"text",{x:(m.l+W-m.r)/2,y:H-6,"text-anchor":"middle","font-size":13,"font-weight":600},xl);
+  el(g,"text",{transform:`translate(14,${(m.t+H-m.b)/2}) rotate(-90)`,"text-anchor":"middle","font-size":13,"font-weight":600},yl);
+  return {sx,sy}}
+function mkSvg(id,W,H){const s=el(null,"svg",{viewBox:`0 0 ${W} ${H}`,role:"img"});document.getElementById(id).appendChild(s);return s}
+
+/* ---- data section ---- */
+const tb=document.querySelector("#schema tbody");
+M.schema.forEach(s=>{const r=tb.insertRow();r.insertCell().textContent=s.name;r.insertCell().textContent=s.type;const c=r.insertCell();c.className="num";c.textContent=n0(s.n)+(s.missing?` (${n0(s.missing)} blank)`:"")});
+const miss=M.schema.reduce((a,s)=>a+s.missing,0);
+document.getElementById("checks").innerHTML=
+ `<div><span class="big">${n0(M.n_raw)}</span>rows in the file</div>
+  <div><span class="big">${M.full_dups}</span>fully duplicated rows; ${M.id_dups} repeated respondent IDs. ${M.full_dups+M.id_dups===0?"No duplicates found.":"Duplicates found."}</div>
+  <div><span class="big">${n0(miss)}</span>blank cells found. ${miss?`${n0(M.removed)} row(s) containing a blank were removed.`:"No rows needed removing."}</div>
+  <div><span class="big">${n0(M.n_clean)}</span>rows used in all analyses</div>`;
+
+/* ---- 1 cultural map ---- */
+(function(){const W=720,H=460,m={l:60,r:30,t:20,b:50},s=mkSvg("c1",W,H);
+ const S=D.summary,C=D.countries,xs=C.map(c=>S[c].secular),ys=C.map(c=>S[c].emancipative);
+ const pad=v=>[v,0];const xr=[Math.max(0,Math.floor((Math.min(...xs)-.05)*20)/20),Math.ceil((Math.max(...xs)+.05)*20)/20],yr=[Math.max(0,Math.floor((Math.min(...ys)-.05)*20)/20),Math.ceil((Math.max(...ys)+.05)*20)/20];
+ const {sx,sy}=axes(s,W,H,m,xr,yr,"Secular values (country average, 0–1)","Emancipative values (country average, 0–1)");
+ C.forEach(c=>{const x=sx(S[c].secular),y=sy(S[c].emancipative);const mk=marker(s,MARK[c],x,y,10,COL[c],{stroke:"#222","stroke-width":1.2});
+  tipOn(mk,`${c}: secular ${f2(S[c].secular)}, emancipative ${f2(S[c].emancipative)} (n=${n0(S[c].n)})`);
+  const right=x<W-130;el(s,"text",{x:x+(right?15:-15),y:y+5,"text-anchor":right?"start":"end","font-size":14,"font-weight":600},c)});
+ const hi=[...C].sort((a,b)=>S[b].emancipative-S[a].emancipative),hs=[...C].sort((a,b)=>S[b].secular-S[a].secular);
+ document.getElementById("t1").innerHTML=`<b>Takeaway:</b> ${hi[0]} is highest on emancipative values (${f2(S[hi[0]].emancipative)}) and ${hi[4]} lowest (${f2(S[hi[4]].emancipative)}); on secular values ${hs[0]} leads (${f2(S[hs[0]].secular)}) and ${hs[4]} trails (${f2(S[hs[4]].secular)}). Illustrative only, as the data is simulated.`})();
+
+/* ---- 2 radar ---- */
+(function(){const W=720,H=520,cx=W/2,cy=H/2+5,R=185,s=mkSvg("c2",W,H),A=D.axes,k=A.length;
+ const ang=i=>-Math.PI/2+i*2*Math.PI/k, pt=(i,v)=>[cx+Math.cos(ang(i))*R*v,cy+Math.sin(ang(i))*R*v];
+ [.25,.5,.75,1].forEach(v=>{el(s,"polygon",{points:A.map((_,i)=>pt(i,v).join(",")).join(" "),fill:"none",stroke:"#8886"});
+  el(s,"text",{x:cx+4,y:cy-R*v-3,"font-size":11,fill:"#888"},f2(v)).style.fill="#888"});
+ A.forEach((a,i)=>{const [x,y]=pt(i,1);el(s,"line",{x1:cx,y1:cy,x2:x,y2:y,stroke:"#8886"});
+  const [lx,ly]=pt(i,1.17),an=Math.abs(lx-cx)<8?"middle":lx>cx?"start":"end";el(s,"text",{x:lx,y:ly+4,"text-anchor":an,"font-size":13,"font-weight":600},a)});
+ D.countries.forEach(c=>{const v=D.summary[c].radar;
+  el(s,"polygon",{points:v.map((x,i)=>pt(i,x).join(",")).join(" "),fill:COL[c],"fill-opacity":.07,stroke:COL[c],"stroke-width":2.4,"stroke-dasharray":DASH[c],"stroke-linejoin":"round"});
+  v.forEach((x,i)=>{const [px,py]=pt(i,x);tipOn(marker(s,MARK[c],px,py,5,COL[c]),`${c} · ${A[i]}: ${f2(x)}`)})});
+ const L=document.getElementById("l2");D.countries.forEach(c=>L.appendChild(legendItem(c,true)));
+ const S=D.summary,ix=A.indexOf("Importance of God"),sg=S.Singapore.radar,ind=S.India.radar;
+ const top=[...D.countries].sort((a,b)=>S[b].radar[ix]-S[a].radar[ix])[0],low=[...D.countries].sort((a,b)=>S[a].radar[ix]-S[b].radar[ix])[0];
+ document.getElementById("t2").innerHTML=`<b>Takeaway:</b> Each country has a distinct profile. Importance of God is highest in ${top} (${f2(S[top].radar[ix])}) and lowest in ${low} (${f2(S[low].radar[ix])}), while trust in others ranges from ${f2(Math.min(...D.countries.map(c=>S[c].radar[1])))} to ${f2(Math.max(...D.countries.map(c=>S[c].radar[1])))}.`})();
+
+/* ---- 3 China vs India scatter ---- */
+(function(){const W=720,H=480,m={l:60,r:20,t:20,b:50},s=mkSvg("c3",W,H);
+ const {sx,sy}=axes(s,W,H,m,[0,1],[0,1],"Secular values (0–1)","Emancipative values (0–1)",5);
+ ["China","India"].forEach(c=>D.sample[c].forEach(p=>{const x=sx(p[0]),y=sy(p[1]);
+  const mk=marker(s,MARK[c],x,y,3.8,COL[c],{"fill-opacity":.55,"stroke-width":.5});tipOn(mk,`${c}: secular ${f2(p[0])}, emancipative ${f2(p[1])}`)}));
+ ["China","India"].forEach(c=>{const S=D.summary[c];tipOn(marker(s,MARK[c],sx(S.secular),sy(S.emancipative),11,COL[c],{stroke:"#111","stroke-width":2.5,"fill-opacity":1}),`${c} average: secular ${f2(S.secular)}, emancipative ${f2(S.emancipative)}`)});
+ const L=document.getElementById("l3");["China","India"].forEach(c=>L.appendChild(legendItem(c)));
+ const Sc=D.summary.China,Si=D.summary.India;
+ document.getElementById("t3").innerHTML=`<b>Takeaway:</b> The averages differ (China ${f2(Sc.secular)} / ${f2(Sc.emancipative)}, India ${f2(Si.secular)} / ${f2(Si.emancipative)} for secular / emancipative), yet the two clouds overlap heavily: about ${Math.round(D.overlap*100)}% of Indian respondents fall within the central 90% range of Chinese respondents on both measures. Country averages say little about any one person.`})();
+
+/* ---- 4 heatmap ---- */
+(function(){const g=document.getElementById("c4"),G=D.grid,mx=Math.max(...G.flat()),tot=G.flat().reduce((a,b)=>a+b,0);
+ const shade=v=>{const t=v/mx;return `rgb(${Math.round(240-t*(240-8))},${Math.round(247-t*(247-48))},${Math.round(255-t*(255-107))})`};
+ const add=(t,cls)=>{const d=document.createElement("div");d.className=cls||"";d.textContent=t;g.appendChild(d);return d};
+ for(let r=9;r>=0;r--){add(r+1,"h");for(let c=0;c<10;c++){const v=G[r][c],d=add(v||"");d.style.background=shade(v);d.style.color=v/mx>.5?"#fff":"#1f2328";d.title=`Life ${r+1}, financial ${c+1}: ${n0(v)} respondents`;tipOn(d,d.title)}}
+ add("","h");for(let c=1;c<=10;c++)add(c,"h");
+ document.getElementById("t4").innerHTML=`<b>Takeaway:</b> In Singapore, life and financial satisfaction move together (correlation ≈ ${f2(D.sg_corr)}); respondents (n=${n0(tot)}) cluster along the diagonal, though plenty of people are happy with life despite low financial satisfaction and vice versa.`})();
+</script>
+</body>
+</html>
